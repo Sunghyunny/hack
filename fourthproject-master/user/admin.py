@@ -1,0 +1,37 @@
+from django.contrib import admin
+
+from .models import User
+
+#프로필
+from .models import Profile
+
+
+@admin.register(User)
+class UserAdmin(admin.ModelAdmin):
+    list_display = ('id', 'email', 'name','username', 'joined_at', 'last_login_at', 'is_superuser', 'is_active')
+    list_display_links = ('id', 'email', 'name')
+    exclude = ('password',)                           # 사용자 상세 정보에서 비밀번호 필드를 노출하지 않음
+
+    def joined_at(self, obj):
+        return obj.date_joined.strftime("%Y-%m-%d")
+
+    def last_login_at(self, obj):
+        if not obj.last_login:
+            return ''
+        return obj.last_login.strftime("%Y-%m-%d %H:%M")
+
+    joined_at.admin_order_field = '-date_joined'      # 가장 최근에 가입한 사람부터 리스팅
+    joined_at.short_description = '가입일'
+    last_login_at.admin_order_field = 'last_login_at'
+    last_login_at.short_description = '최근로그인'
+
+#프로필
+class ProfileInline(admin.StackedInline):
+    model = Profile
+    con_delete = False
+
+class CustomUserAdmin(UserAdmin):
+    inlines = (ProfileInline,)
+
+admin.site.unregister(User)
+admin.site.register(User,CustomUserAdmin)

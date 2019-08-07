@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+    <html lang="kor">
+        <head>
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>로그인</title>
+            {% load staticfiles %}
+            <link rel="stylesheet" type="text/css" href="{% static 'css/join-login.css' %}" />
+        </head>
+        <body>
+            {% block title %}<title>로그인</title>{% endblock %}
+            {% block content %}
+                <div>
+                    <div>
+                        <a href="{% url 'index' %}"><img class="logo" src="{% static 'image/title.png' %}" alt="logo"></a>
+                    </div>
+                    <div>
+                        <p class="title">로그인</p>
+                    </div>
+                    <div class="body">
+                        <form class="form" action="." method="post">
+                            {% csrf_token %}
+                                {% for field in form %}
+                                    <div class="form-group {% if field.errors|length > 0 %}has-error{% endif %}">
+                                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                        <input name="{{ field.html_name }}" id="{{ field.id_for_label }}" class="form-control" type="{{ field.field.widget.input_type }}" value="{{ field.value|default_if_none:'' }}">
+                                            {% for error in field.errors %}
+                                                <label class="control-label" for="{{ field.id_for_label }}">{{ error }}</label>
+                                            {% endfor %}
+                                    </div>
+                                {% endfor %}
+                                {% if form.errors %}
+                                    <p class="error_m">아이디나 비밀번호가 일치하지 않습니다.</p>
+                                {% endif %}
+                                <div class="form-actions">
+                                    <button class="button" type="submit">로그인</button>
+                                    <br><br>
+                                    <p>혹시 비밀번호를 잊으셨나요?</p>
+                                    <br>
+                                    <a class="find_pw" href="{% url 'password_reset' %}">▲&emsp;비밀번호 찾기</a>
+                                    <br><br>
+                                    <a class="re_mail" href="/user/resend_verify_email/">▲&emsp;인증이메일 재발송</a>
+                                </div>
+                        </form>
+                    </div>
+                </div>
+            {% endblock content %}
+        </body>
+</html>

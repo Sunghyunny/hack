@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+    <html lang="kor">
+        <head>
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>렌즈를마주한사람들</title>
+            {% load staticfiles %}
+            <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}" />
+        </head>
+        <body>
+            <div class="back">
+                <img src="{% static 'image/background.jpg' %}" alt="background">
+            </div>
+            <div class="title">
+                <img src="{% static 'image/title.png' %}" alt="title">
+            </div>
+            <!--<div class="subtitle">
+                <p id="white">아마추어</p>
+                <p id="navy1">사진작가&ensp;-</p>
+                <p id="navy2">일반인&emsp;모델</p>
+                <p id="navy3">매칭&emsp;서비스</p>-->
+            </div>
+            <div class="category">
+                {% if user.is_active %}
+                    <a href="{% url 'profile' user.pk %}"> <span class="glyphicon glyphicon-heart"></span> {{user.username}}</a>
+                    <a href="{% url 'logout' %}">로그아웃</a>
+                    <a href="">마이페이지</a>
+                     <a href="{% url 'board_index' %}">게시판</a>
+                    <a href="">모델</a>
+                    <a href="">작가</a>
+                    </div>
+                    {% else %}
+                        <a id="top" " href="{% url 'login' %}"> <span class="glyphicon glyphicon-user"></span> 로그인</a>
+                        <a href="{% url 'signup' %}">회원가입</a>
+                        <a href="{% url 'board_index' %}">게시판</a>
+                        <a href="">모델</a>
+                        <a href="">작가</a>
+                {% endif %}
+            </div>
+        </body>
+</html>

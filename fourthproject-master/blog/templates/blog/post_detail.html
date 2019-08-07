@@ -1,0 +1,63 @@
+{% extends './base.html' %}
+
+
+{% block content %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <script> alert('{{ message }}'); </script>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+
+    <h1>게시물 제목: {{ post.post_title }}</h1>
+
+    <p><strong>작성자:</strong>{{post.writer}}</p>
+    <p><strong>작성 날짜:</strong> {{ post.post_date }}</p>
+
+    <div style="margin-left:20px;margin-top:20px">
+      <h4>게시물 내용</h4>
+      {{ post.post_contents | safe }}
+    </div>
+
+    <br><br>
+
+    {% if user.username == post.writer %}
+        <a href="{% url 'post_update' post.pk %}" onclick="return confirm('정말 이 게시물을 수정하겠습니까?')">수정하기</a>&nbsp;
+        &nbsp;
+        <a href="{% url 'post_delete' post.pk %}" onclick="return confirm('정말 이 게시물을 삭제하겠습니까?')">삭제하기</a>
+    {% endif %}
+    <hr>
+    <form action="{% url 'comment_write' post_pk=post.pk %}" method="POST">
+        {% csrf_token %}
+        <input type="text" name="content" placeholder="댓글을 작성해주세요">
+        <input type="submit" value="등록"/>
+    </form>
+    <br>
+    <p class = "posts">
+        {% if post.get_previous_by_post_date %}
+            <a href="{{ post.get_previous_post.get_absolute_url }}" title="View previous post">&laquo;-- 이전 글</a>
+        {% endif %}
+        &nbsp;&nbsp;
+        {% if post.get_next_by_post_date %}
+            <a href="{{ post.get_next_post.get_absolute_url }}" title="View next post"> 다음 글 --&raquo;</a>
+        {% endif %}
+    </p>
+    <hr>
+    <h3>댓글 목록</h3>
+    {% for comment in post.comments.all %}
+        <div class="comment">
+            {{ comment.comment_date }}{% if user.email != comment.comment_writer %}
+                <a href="{% url 'comment_delete' post.pk comment.pk %}" onclick="return confirm('정말 이 댓글을 삭제하겠습니까?')">댓글 삭제</a>
+            {% endif %}
+            <br>
+            <strong>{{ comment.comment_writer }}</strong>
+            <p>{{ comment.comment_contents }}</p>
+        </div>
+    {% empty %}
+
+    {% endfor %}
+    <br><br><br><br><br><br><br><br><br><br>
+{% endblock %}
+

@@ -1,0 +1,43 @@
+{% extends './base.html' %}
+
+
+{% block content %}
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <script> alert('{{ message }}'); </script>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>게시물 번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>날짜</th>
+                <th>조회수</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if post_list %}
+                {% for post in post_list %}
+                    <tr>
+                        <td>{{ post.id }}</td>
+                        <td><a href="{{ post.get_absolute_url }}">{{ post.post_title }} </a>   ( {{post.comments.count}} )</td>
+                        <td>{{ post.writer}}</td>
+                        <td>{{ post.post_date }}</td>
+                        <td>{{ post.post_hit }}</td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <p>아직 게시물이 없습니다!</p>
+            {% endif %}
+        </tbody>
+    </table>
+
+    <p><a href="{% url 'post_write' %}">글 작성하기</a></p>
+
+{% endblock %}

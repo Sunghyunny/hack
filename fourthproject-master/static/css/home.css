@@ -1,0 +1,75 @@
+@font-face { font-family: 'S-CoreDream-8Heavy'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-8Heavy.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'S-CoreDream-3Light'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff'); font-weight: normal; font-style: normal; }
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.back > img {
+    z-index: 0;
+    width: 60%;
+}
+
+.title > img {
+    z-index: 1;
+    position: absolute;
+    top: 5%;
+    left: 70%;
+    width: 25%;
+}
+
+
+.subtitle > p {
+    font-family: S-CoreDream-8Heavy;
+    font-size: 1.5em;
+}
+
+#white {
+    z-index: 2;
+    position: absolute;
+    top: 10%;
+    left: 20%;
+    color: white;
+}
+
+#navy1 {
+    z-index: 3;
+    position: absolute;
+    top: 10%;
+    left: 29%;
+    color: #0b2671;
+}
+
+#navy2 {
+    z-index: 4;
+    position: absolute;
+    top: 10%;
+    left: 39%;
+    color: #0b2671;
+}
+
+#navy3 {
+    z-index: 5;
+    position: absolute;
+    top: 10%;
+    left: 54%;
+    color: #0b2671;
+}
+
+.category {
+    z-index: 6;
+    position: absolute;
+    top: 88%;
+    left: 5%;
+    width: 100%;
+}
+
+.category > a {
+    font-family: S-CoreDream-3Light;
+    color: #0b2671;
+    text-decoration: none;
+    margin-left: 10%;
+    font-size: 1.5em;
+}

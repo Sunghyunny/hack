@@ -1,0 +1,64 @@
+@font-face { font-family: 'S-CoreDream-8Heavy'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-8Heavy.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'S-CoreDream-3Light'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff'); font-weight: normal; font-style: normal; }
+
+
+.logo {
+    z-index: 10;
+    position: absolute;
+    top: 5%;
+    left: 10%;
+    width: 10%;
+}
+
+.title {
+    font-family: S-CoreDream-8Heavy;
+    font-size: 3em;
+    color: #0b2671;
+    text-align: center;
+    margin-top: 7%;
+}
+
+.body {
+    position: absolute;
+    top: 30%;
+    left: 38%;
+}
+
+.form {
+    font-family: S-CoreDream-3Light;
+    color: #0b2671;
+    width: 100%;
+}
+
+.button {
+    z-index: 20;
+    border: #0b2671 0.05em solid;
+    color: #0b2671;
+    font-family: S-CoreDream-8Heavy;
+    font-size: 1.5em;
+    background-color: white;
+    margin-top: 10%;
+    margin-left: 45%;
+}
+
+.form-actions > p {
+    color: #0b2671;
+    font-family: S-CoreDream-3Light;
+}
+
+.find_pw {
+    color: red;
+    font-family: S-CoreDream-3Light;
+    text-decoration: none;
+}
+
+.re_mail {
+    color: red;
+    font-family: S-CoreDream-3Light;
+    text-decoration: none;
+}
+
+.error_m {
+    color: red;
+    font-family: S-CoreDream-3Light;
+}
